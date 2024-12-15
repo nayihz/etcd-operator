@@ -69,7 +69,7 @@ var _ = Describe("EtcdCluster Controller", func() {
 		It("should successfully reconcile the resource", func() {
 			By("Reconciling the created resource")
 			controllerReconciler := &EtcdClusterReconciler{
-				Client: k8sClient,
+				client: k8sClient,
 				Scheme: k8sClient.Scheme(),
 			}
 

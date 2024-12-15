@@ -142,10 +142,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err = (&controller.EtcdClusterReconciler{
-		Client: mgr.GetClient(),
-		Scheme: mgr.GetScheme(),
-	}).SetupWithManager(mgr); err != nil {
+	if err = controller.NewWorkloadReconciler(mgr.GetClient(), mgr.GetEventRecorderFor("etcd-operator")).
+		SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "EtcdCluster")
 		os.Exit(1)
 	}
